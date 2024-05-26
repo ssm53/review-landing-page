@@ -89,6 +89,8 @@
 					></i>
 				{/if}
 				{#if $star3}
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<i
 						class="fa-solid fa-star text-4xl sm:text-6xl md:text-8xl m-2 filled-star-3"
 						on:click={clickStar3}
@@ -101,10 +103,14 @@
 						on:click={clickStar3}
 					></i>
 				{/if}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<i
 					class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-4"
 					on:click={clickStar4}
 				></i>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<i
 					class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-5"
 					on:click={clickStar5}
