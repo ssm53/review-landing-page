@@ -48,50 +48,79 @@
 	<script src="https://kit.fontawesome.com/bcb26383e6.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="h-screen">
-		<h1 class="text-4xl text-center mt-40">Klinik Keluarga Desa Review Page</h1>
+	<div class="min-h-screen flex flex-col items-center justify-center">
+		<h1 class="text-2xl sm:text-3xl md:text-4xl text-center mt-10 md:mt-40">
+			Klinik Keluarga Desa Review Page
+		</h1>
 		{#if $formSubmitted}
-			<h1 class="text-4xl text-center mt-20">
+			<h1 class="text-xl sm:text-2xl md:text-4xl text-center mt-10 md:mt-20">
 				Once again, thank you so much. You can exit the page now
 			</h1>
 		{:else}
-			<div class="flex flex-row items-center justify-center mt-20">
+			<div class="flex flex-wrap items-center justify-center mt-10 md:mt-20">
 				{#if $star1}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i class="fa-solid fa-star text-8xl mr-5 filled-star-1" on:click={clickStar1}></i>
+					<i
+						class="fa-solid fa-star text-4xl sm:text-6xl md:text-8xl m-2 filled-star-1"
+						on:click={clickStar1}
+					></i>
 				{:else}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i class="fa-regular fa-star text-8xl mr-5 star-1" on:click={clickStar1}></i>
+					<i
+						class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-1"
+						on:click={clickStar1}
+					></i>
 				{/if}
 				{#if $star2}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i class="fa-solid fa-star text-8xl mr-5 filled-star-2" on:click={clickStar2}></i>
+					<i
+						class="fa-solid fa-star text-4xl sm:text-6xl md:text-8xl m-2 filled-star-2"
+						on:click={clickStar2}
+					></i>
 				{:else}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i class="fa-regular fa-star text-8xl mr-5 star-2" on:click={clickStar2}></i>
+					<i
+						class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-2"
+						on:click={clickStar2}
+					></i>
 				{/if}
 				{#if $star3}
-					<i class="fa-solid fa-star text-8xl mr-5 filled-star-3 on:click={clickStar3}"></i>
+					<i
+						class="fa-solid fa-star text-4xl sm:text-6xl md:text-8xl m-2 filled-star-3"
+						on:click={clickStar3}
+					></i>
 				{:else}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i class="fa-regular fa-star text-8xl mr-5 star-3" on:click={clickStar3}></i>
+					<i
+						class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-3"
+						on:click={clickStar3}
+					></i>
 				{/if}
-				<i class="fa-regular fa-star text-8xl mr-5 star-4" on:click={clickStar4}></i>
-				<i class="fa-regular fa-star text-8xl star-5" on:click={clickStar5}></i>
+				<i
+					class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-4"
+					on:click={clickStar4}
+				></i>
+				<i
+					class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-5"
+					on:click={clickStar5}
+				></i>
 			</div>
 
-			<div class="flex justify-center items-center recommendation-form hidden">
+			<div class="flex justify-center items-center recommendation-form hidden mt-10">
 				<form
 					on:submit|preventDefault={addToRecommendations}
-					class="w-1/2 bg-white shadow-md rounded-lg p-8"
+					class="w-full sm:w-3/4 md:w-1/2 bg-white shadow-md rounded-lg p-4 sm:p-6 md:p-8"
 				>
-					<div class="mb-6">
-						<label for="recommendation" class="block text-gray-700 text-sm font-bold mb-2">
+					<div class="mb-4 sm:mb-6">
+						<label
+							for="recommendation"
+							class="block text-gray-700 text-sm sm:text-base font-bold mb-2"
+						>
 							How can we improve?
 						</label>
 						<input
@@ -101,9 +130,6 @@
 							class="block w-full rounded-md py-2 px-3 border border-gray-300 h-32"
 							required
 						/>
-						<!-- {#if 'name' in formErrors}
-						<p class="text-red-500 text-xs mt-1">{formErrors.name}</p>
-					{/if} -->
 					</div>
 					<div class="flex justify-center">
 						<button
@@ -116,7 +142,9 @@
 				</form>
 			</div>
 
-			<h1 class="text-4xl text-center mt-20">Your review means alot to us. Thank you</h1>
+			<h1 class="text-xl sm:text-2xl md:text-4xl text-center mt-10 md:mt-20">
+				Your review means a lot to us. Thank you
+			</h1>
 		{/if}
 	</div>
 </body>
