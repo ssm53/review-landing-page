@@ -3,9 +3,10 @@
 	import { goto } from '$app/navigation';
 
 	function addToRecommendations(evt) {
-		const newRecommendation = evt.target['recommendation'].value;
-		recommendations.update((recs) => [...recs, newRecommendation]);
+		// const newRecommendation = evt.target['recommendation'].value;
+		// recommendations.update((recs) => [...recs, newRecommendation]);
 		formSubmitted.set(true);
+		console.log('hello');
 	}
 
 	function clickStar1() {
