@@ -1,12 +1,42 @@
 <script>
 	import { recommendations, star1, star2, star3, formSubmitted } from '../stores/store';
 	import { goto } from '$app/navigation';
+	import Spinner from '../spinner/spinner.svelte';
+	import { loading } from '../stores/store';
+	import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
 
-	function addToRecommendations(evt) {
-		// const newRecommendation = evt.target['recommendation'].value;
-		// recommendations.update((recs) => [...recs, newRecommendation]);
-		formSubmitted.set(true);
-		console.log('hello');
+	export async function addToRecommendations(evt) {
+		// spinner shits
+		loading.update((value) => {
+			return true;
+		});
+
+		const reviewData = {
+			recommendation: evt.target['recommendation'].value
+		};
+
+		const resp = await fetch(PUBLIC_BACKEND_BASE_URL + '/new-bad-review', {
+			method: 'POST',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(reviewData)
+		});
+
+		if (resp.status == 200) {
+			// spinner shits
+			loading.update((value) => {
+				return false;
+			});
+			formSubmitted.set(true);
+		} else {
+			// spinner shits
+			loading.update((value) => {
+				return false;
+			});
+			formSubmitted.set(true);
+		}
 	}
 
 	function clickStar1() {
@@ -48,6 +78,7 @@
 	<script src="https://kit.fontawesome.com/bcb26383e6.js" crossorigin="anonymous"></script>
 </head>
 <body>
+	<Spinner />
 	<div class="min-h-screen flex flex-col items-center justify-center">
 		<h1 class="text-2xl sm:text-3xl md:text-4xl text-center mt-10 md:mt-40">
 			Klinik Keluarga Desa Review Page
