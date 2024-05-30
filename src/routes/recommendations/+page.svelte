@@ -21,7 +21,7 @@
 					<tr class="hover:bg-gray-100">
 						<td class="border border-gray-400 px-4 py-2">{revDeets.id}</td>
 						<td class="border border-gray-400 px-4 py-2">{revDeets.review}</td>
-						<td class="border border-gray-400 px-4 py-2">{formatDateTime(revDeets.dateTime)}</td>
+						<td class="border border-gray-400 px-4 py-2">{formatDateTime(revDeets.reviewTime)}</td>
 					</tr>
 				{/each}
 			</tbody>
