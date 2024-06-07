@@ -5,6 +5,7 @@
 	import { loading, lastReviewTime } from '../stores/store';
 	import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
 	import { checkAndSendReview } from '../utils/timer.js';
+	import { onMount } from 'svelte';
 
 	// Set an interval to check and send review if needed
 	const INTERVAL = 60 * 1000; // Check every minute
