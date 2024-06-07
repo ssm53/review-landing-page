@@ -11,3 +11,6 @@ export const star3 = writable(false);
 export const formSubmitted = writable(false);
 
 export const loading = writable(false);
+
+// timer
+export const lastReviewTime = writable(new Date());
