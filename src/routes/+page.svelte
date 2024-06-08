@@ -2,26 +2,26 @@
 	import { recommendations, star1, star2, star3, formSubmitted } from '../stores/store';
 	import { goto } from '$app/navigation';
 	import Spinner from '../spinner/spinner.svelte';
-	import { loading, lastReviewTime } from '../stores/store';
+	import { loading } from '../stores/store';
 	import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
-	import { checkAndSendReview } from '../utils/timer.js';
-	import { onMount } from 'svelte';
+	// import { checkAndSendReview } from '../utils/timer.js';
+	// import { onMount } from 'svelte';
 
-	// Set an interval to check and send review if needed
-	const INTERVAL = 60 * 1000; // Check every minute
+	// // Set an interval to check and send review if needed
+	// const INTERVAL = 60 * 1000; // Check every minute
 
-	onMount(() => {
-		const interval = setInterval(() => {
-			checkAndSendReview();
-		}, INTERVAL);
+	// onMount(() => {
+	// 	const interval = setInterval(() => {
+	// 		checkAndSendReview();
+	// 	}, INTERVAL);
 
-		return () => clearInterval(interval); // Clean up the interval on component unmount
-	});
+	// 	return () => clearInterval(interval); // Clean up the interval on component unmount
+	// });
 
-	// Function to update lastReviewTime
-	function updateLastReviewTime() {
-		lastReviewTime.set(new Date());
-	}
+	// // Function to update lastReviewTime
+	// function updateLastReviewTime() {
+	// 	lastReviewTime.set(new Date());
+	// }
 
 	export async function addToRecommendations(evt) {
 		// spinner shits
@@ -48,16 +48,16 @@
 				return false;
 			});
 			formSubmitted.set(true);
-			// i want to set the lastreviewtime to this time now
-			lastReviewTime.set(new Date());
+			// // i want to set the lastreviewtime to this time now
+			// lastReviewTime.set(new Date());
 		} else {
 			// spinner shits
 			loading.update((value) => {
 				return false;
 			});
 			formSubmitted.set(true);
-			// i want to set the lastreviewtime to this time now
-			lastReviewTime.set(new Date());
+			// // i want to set the lastreviewtime to this time now
+			// lastReviewTime.set(new Date());
 		}
 	}
 
