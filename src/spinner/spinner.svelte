@@ -1,211 +1,56 @@
 <script>
-	import { recommendations, star1, star2, star3, formSubmitted } from '../stores/store';
-	import { goto } from '$app/navigation';
-	import Spinner from '../spinner/spinner.svelte';
 	import { loading } from '../stores/store';
-	import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
-	// import { checkAndSendReview } from '../utils/timer.js';
-	// import { onMount } from 'svelte';
-
-	// // Set an interval to check and send review if needed
-	// const INTERVAL = 60 * 1000; // Check every minute
-
-	// onMount(() => {
-	// 	const interval = setInterval(() => {
-	// 		checkAndSendReview();
-	// 	}, INTERVAL);
-
-	// 	return () => clearInterval(interval); // Clean up the interval on component unmount
-	// });
-
-	export async function addToRecommendations(evt) {
-		// spinner shits
-		loading.update((value) => {
-			return true;
-		});
-
-		const reviewData = {
-			recommendation: evt.target['recommendation'].value
-		};
-
-		const resp = await fetch(PUBLIC_BACKEND_BASE_URL + '/new-bad-review', {
-			method: 'POST',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(reviewData)
-		});
-
-		if (resp.status == 200) {
-			// spinner shits
-			loading.update((value) => {
-				return false;
-			});
-			formSubmitted.set(true);
-			// // i want to set the lastreviewtime to this time now
-			// lastReviewTime.set(new Date());
-		} else {
-			// spinner shits
-			loading.update((value) => {
-				return false;
-			});
-			formSubmitted.set(true);
-			// // i want to set the lastreviewtime to this time now
-			// lastReviewTime.set(new Date());
-		}
-	}
-
-	function clickStar1() {
-		star2.set(false);
-		star3.set(false);
-		star1.set(true);
-		let formToShow = document.querySelector('.recommendation-form');
-		formToShow.classList.remove('hidden');
-	}
-
-	function clickStar2() {
-		star3.set(false);
-		star1.set(true);
-		star2.set(true);
-		let formToShow = document.querySelector('.recommendation-form');
-		formToShow.classList.remove('hidden');
-	}
-
-	function clickStar3() {
-		star1.set(true);
-		star2.set(true);
-		star3.set(true);
-		let formToShow = document.querySelector('.recommendation-form');
-		formToShow.classList.remove('hidden');
-	}
-
-	function clickStar4() {
-		window.location.href =
-			'https://www.google.com.my/search?q=poliklinik.vijay&ie=UTF-8&oe=UTF-8&hl=en-my&client=safari#wptab=si:ACC90nzcy7sviKw0NTZoUBUzhQehr3jouizIrVSf6avWI23m1f6sMbc1OTIhtYrIx8DPQT5qpyjV4AzbsnazMaMKHmCE-CK8mO-6CIeepMxPCmkSFNpGxZQm1-lbTEI23o6PCTDBvGqf';
-	}
-
-	function clickStar5() {
-		window.location.href =
-			'https://www.google.com.my/search?q=poliklinik.vijay&ie=UTF-8&oe=UTF-8&hl=en-my&client=safari#wptab=si:ACC90nzcy7sviKw0NTZoUBUzhQehr3jouizIrVSf6avWI23m1f6sMbc1OTIhtYrIx8DPQT5qpyjV4AzbsnazMaMKHmCE-CK8mO-6CIeepMxPCmkSFNpGxZQm1-lbTEI23o6PCTDBvGqf';
-	}
 </script>
 
-<head>
-	<script src="https://kit.fontawesome.com/bcb26383e6.js" crossorigin="anonymous"></script>
-</head>
-<body>
-	<Spinner />
-	<div class="min-h-screen flex flex-col items-center justify-center">
-		<h1 class="text-2xl sm:text-3xl md:text-4xl text-center mt-10 md:mt-40">
-			Poliklinik Vijay Review Page
-		</h1>
-		{#if $formSubmitted}
-			<h1 class="text-xl sm:text-2xl md:text-4xl text-center mt-10 md:mt-20">
-				Once again, thank you so much. You can exit the page now
-			</h1>
-		{:else}
-			<div class="flex flex-wrap items-center justify-center mt-10 md:mt-20">
-				{#if $star1}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i
-						class="fa-solid fa-star text-4xl sm:text-6xl md:text-8xl m-2 filled-star-1"
-						on:click={clickStar1}
-					></i>
-				{:else}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i
-						class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-1"
-						on:click={clickStar1}
-					></i>
-				{/if}
-				{#if $star2}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i
-						class="fa-solid fa-star text-4xl sm:text-6xl md:text-8xl m-2 filled-star-2"
-						on:click={clickStar2}
-					></i>
-				{:else}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i
-						class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-2"
-						on:click={clickStar2}
-					></i>
-				{/if}
-				{#if $star3}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i
-						class="fa-solid fa-star text-4xl sm:text-6xl md:text-8xl m-2 filled-star-3"
-						on:click={clickStar3}
-					></i>
-				{:else}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<i
-						class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-3"
-						on:click={clickStar3}
-					></i>
-				{/if}
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<!-- svelte-ignore a11y-no-static-element-interactions -->
-				<i
-					class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-4"
-					on:click={clickStar4}
-				></i>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<!-- svelte-ignore a11y-no-static-element-interactions -->
-				<i
-					class="fa-regular fa-star text-4xl sm:text-6xl md:text-8xl m-2 star-5"
-					on:click={clickStar5}
-				></i>
-			</div>
-
-			<div class="flex w-full justify-center items-center recommendation-form hidden mt-10">
-				<form
-					on:submit|preventDefault={addToRecommendations}
-					class="w-full sm:w-3/4 md:w-1/2 bg-white shadow-md rounded-lg p-4 sm:p-6 md:p-8"
-				>
-					<div class="mb-4 sm:mb-6">
-						<label
-							for="recommendation"
-							class="block text-gray-700 text-sm sm:text-base font-bold mb-2"
-						>
-							How can we improve?
-						</label>
-						<input
-							type="text"
-							name="recommendation"
-							placeholder="Please tell us how we can improve"
-							class="block w-full rounded-md py-2 px-3 border border-gray-300 h-32"
-							required
-						/>
-					</div>
-					<div class="flex justify-center">
-						<button
-							class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md"
-							type="submit"
-						>
-							Done
-						</button>
-					</div>
-				</form>
-			</div>
-
-			<h1 class="text-xl sm:text-2xl md:text-4xl text-center mt-10 md:mt-20">
-				Your review means a lot to us. Thank you
-			</h1>
-		{/if}
+{#if $loading}
+	<div class="loader">
+		<div class="spinner"></div>
+		<div class="loading-text">
+			<p>This can take up to 1 minute. Just let it load.</p>
+			<p>You can walk to your car. It will be done by then!</p>
+			<p>THANK YOU!</p>
+		</div>
 	</div>
-</body>
+{/if}
 
 <style>
-	.fa-star {
-		display: inline-block !important;
-		visibility: visible !important;
+	.loader {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background-color: black;
+		transition:
+			opacity 0.75s,
+			visibility 0.75s;
+		color: white; /* Ensures text is white */
+	}
+
+	.spinner {
+		width: 75px;
+		height: 75px;
+		border: 15px solid lightgrey;
+		border-top-color: darkviolet;
+		border-radius: 50%;
+		animation: loading 0.75s ease infinite;
+	}
+
+	.loading-text {
+		text-align: center;
+		margin-top: 20px; /* Space between spinner and text */
+	}
+
+	@keyframes loading {
+		from {
+			transform: rotate(0turn);
+		}
+		to {
+			transform: rotate(1turn);
+		}
 	}
 </style>
